@@ -1,5 +1,4 @@
 import pytest
-from pages.locators import *
 from pages.main_page import MainPage
 from pages.login_page import LoginPage
 
@@ -13,7 +12,7 @@ def test_login_link_is_present(browser):
     page.should_be_login_link()
 
 
-@pytest.mark.xfail
+@pytest.mark.xfail(reason='Pop-up window for discounts until September 27')
 def test_guest_can_go_to_login_page(browser):
     page = MainPage(browser, main_page_link)
     page.open()
@@ -30,5 +29,17 @@ def test_guest_can_login(browser):
     page.should_be_logout_link()
 
 
-def test_login_error(browser):
-    pass
+wrong_login_data_list = [{"mail": '', 'password': ''},
+                         {'mail': 'mail@mail.com', 'password': ''},
+                         {'mail': '12345@mail.com', 'password': 'Qwerty1@'}]
+
+
+@pytest.mark.negative
+@pytest.mark.parametrize('wrong_data', wrong_login_data_list)
+def test_login_error(browser, wrong_data):
+    mail = wrong_data['mail']
+    password = wrong_data['password']
+    page = LoginPage(browser, login_page_link)
+    page.open()
+    page.fill_out_login_form(mail, password)
+    page.should_be_warning_message()
