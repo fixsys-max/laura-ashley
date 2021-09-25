@@ -15,7 +15,8 @@ class LoginPage(BasePage):
     def should_be_warning_message(self):
         assert self.is_element_present(*LoginPageLocators.WARNING_MESSAGE), 'Warning message not found'
 
-    def fill_out_login_form(self, mail, password):
-        self.browser.find_element(*LoginPageLocators.EMAIL_FIELD).send_keys(mail)
-        self.browser.find_element(*LoginPageLocators.PASSWORD_FIELD).send_keys(password)
+    def fill_out_login_form(self, **kwargs):
+        case = kwargs
+        self.browser.find_element(*LoginPageLocators.EMAIL_FIELD).send_keys(case['mail'])
+        self.browser.find_element(*LoginPageLocators.PASSWORD_FIELD).send_keys(case['password'])
         self.browser.find_element(*LoginPageLocators.LOGIN_BUTTON).click()

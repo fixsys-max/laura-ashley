@@ -6,6 +6,16 @@ print(round(time() * 1000))
 print(str(datetime.now().time()).replace(':', '')[:6])
 
 
+def get_right_login_data():
+    case = {'mail': 'mail@mail.com', 'password': '1234'}
+    current_date = str(datetime.now().date()).replace('-', '')
+    current_time = str(datetime.now().time()).replace(':', '')[:6]
+    file_name = f'{current_date}{current_time}_right_reg.json'
+    with open(file_name, 'w') as file:
+        file.write(json.dumps(case))
+    return case
+
+
 def generate_wrong_login_data():
     case = [{"mail": '', 'password': ''},
             {'mail': 'mail@mail.com', 'password': ''},
@@ -169,5 +179,3 @@ def generate_wrong_registration_data():
     with open(file_name, 'w') as file:
         file.write(result)
     return wrong_data_for_register
-
-generate_wrong_login_data()

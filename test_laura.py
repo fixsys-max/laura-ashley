@@ -23,13 +23,13 @@ def test_guest_can_go_to_login_page(browser):
     page.should_be_login_form()
 
 
+@pytest.mark.smoke
 @pytest.mark.positive
 def test_guest_can_login(browser):
-    mail = 'mail@mail.com'
-    password = '1234'
+    data = get_right_login_data()
     page = LoginPage(browser, login_page_link)
     page.open()
-    page.fill_out_login_form(mail, password)
+    page.fill_out_login_form(**data)
     page.should_be_logout_link()
 
 
@@ -39,11 +39,9 @@ wrong_login_data_list = generate_wrong_login_data()
 @pytest.mark.negative
 @pytest.mark.parametrize('wrong_data', wrong_login_data_list)
 def test_login_error(browser, wrong_data):
-    mail = wrong_data['mail']
-    password = wrong_data['password']
     page = LoginPage(browser, login_page_link)
     page.open()
-    page.fill_out_login_form(mail, password)
+    page.fill_out_login_form(**wrong_data)
     page.should_be_warning_message()
 
 
