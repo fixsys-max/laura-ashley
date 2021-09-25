@@ -23,6 +23,7 @@ def test_guest_can_go_to_login_page(browser):
     page.should_be_login_form()
 
 
+@pytest.mark.positive
 def test_guest_can_login(browser):
     mail = 'mail@mail.com'
     password = '1234'
@@ -32,9 +33,7 @@ def test_guest_can_login(browser):
     page.should_be_logout_link()
 
 
-wrong_login_data_list = [{"mail": '', 'password': ''},
-                         {'mail': 'mail@mail.com', 'password': ''},
-                         {'mail': '12345@mail.com', 'password': 'Qwerty1@'}]
+wrong_login_data_list = generate_wrong_login_data()
 
 
 @pytest.mark.negative
@@ -57,11 +56,11 @@ def test_guest_can_register(browser):
     page.should_be_logout_link()
 
 
-registration_data = generate_wrong_registration_data()
+wrong_registration_data = generate_wrong_registration_data()
 
 
 @pytest.mark.negative
-@pytest.mark.parametrize('wrong_data', registration_data)
+@pytest.mark.parametrize('wrong_data', wrong_registration_data)
 def test_guest_can_register(browser, wrong_data):
     page = RegistrationPage(browser, registration_page_link)
     page.open()
