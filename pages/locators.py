@@ -1,12 +1,17 @@
 from selenium.webdriver.common.by import By
+"""Файл для хранения локаторов
+
+Набор локаторов (селекторов), применяемых на страницах сайта"""
 
 
 class HeaderLocators:
+    """Локаторы хэдера"""
     LOGIN_LINK = (By.CSS_SELECTOR, '.kabinet-icon-adaptiv')
     LOGOUT_LINK = (By.CSS_SELECTOR, '#logoutForm')
 
 
 class LoginPageLocators:
+    """Локаторы страницы логина"""
     LOGIN_FORM = (By.CSS_SELECTOR, '#loginForm')
     EMAIL_FIELD = (By.CSS_SELECTOR, '[class="col-md-7"] [name="Email"]')
     PASSWORD_FIELD = (By.CSS_SELECTOR, '[class="col-md-7"] [name="Password"]')
@@ -15,6 +20,7 @@ class LoginPageLocators:
 
 
 class RegistrationPageLocators:
+    """Локаторы страницы регистрации"""
     EMAIL_FIELD = (By.CSS_SELECTOR, '[class="col-md-4"] [name="Email"]')
     PHONE_FIELD = (By.CSS_SELECTOR, '[class="col-md-4"] [name="PhoneNumber"]')
     PASSWORD_FIELD = (By.CSS_SELECTOR, '[class="col-md-4"] [name="Password"]')

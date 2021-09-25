@@ -1,9 +1,7 @@
+# Файл генерации данных для заполнения форм
 from time import time, sleep
 from datetime import datetime
 import json
-
-print(round(time() * 1000))
-print(str(datetime.now().time()).replace(':', '')[:6])
 
 
 def get_right_login_data():

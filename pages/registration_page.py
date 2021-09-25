@@ -3,9 +3,7 @@ from pages.locators import *
 
 
 class RegistrationPage(BasePage):
-    def should_be_logout_link(self):
-        assert self.is_element_present(*HeaderLocators.LOGOUT_LINK), 'Logout link not found'
-
+    """Методы странцы регистрации"""
     def should_be_warning_message(self):
         assert self.is_element_present(*LoginPageLocators.WARNING_MESSAGE), 'Warning message not found'
 
